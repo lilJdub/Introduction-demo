@@ -1,8 +1,136 @@
-<html>
-    <head>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    </head>
-    <title>DEMO PROJECT PAGE</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
-    <body>DEMO PROJECT PAGE</body>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關於我 | lilJdub</title>
+    <style>
+        /* 簡單的 CSS 樣式設定 */
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-color);
+            margin-bottom: 20px;
+            background-color: #ddd; /* 如果還沒放照片，顯示灰色 */
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .role {
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            display: inline-block;
+            background: #eef7fc;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        .bio {
+            margin-bottom: 30px;
+            text-align: left;
+            padding: 0 40px;
+        }
+
+        .skills {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .skill-tag {
+            background: #2c3e50;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            margin: 0 10px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        footer {
+            margin-top: 50px;
+            font-size: 0.8em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-img">
+        
+        <h1>Hello, 我是 lilJdub</h1>
+        <div class="role">軟體工程師 / 學習者</div>
+
+        <div class="bio">
+            <p>嗨！歡迎來到我的個人頁面。我熱愛技術與解決問題。目前正在深入研究 Git 版本控制與網頁開發。</p>
+            <p>這裡是我記錄專案與學習歷程的地方。如果你對我的專案感興趣，歡迎透過下方的連結聯繫我。</p>
+        </div>
+
+        <h3>我的技能</h3>
+        <div class="skills">
+            <span class="skill-tag">Git & GitHub</span>
+            <span class="skill-tag">HTML/CSS</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Python</span>
+        </div>
+
+        <h3>聯絡我</h3>
+        <div class="social-links">
+            <a href="https://github.com/lilJdub" target="_blank">GitHub</a>
+            <a href="mailto:your-email@example.com">Email</a>
+            <a href="#">LinkedIn</a>
+        </div>
+
+        <footer>
+            &copy; 2025 lilJdub. All Rights Reserved.
+        </footer>
+    </div>
+
+</body>
 </html>

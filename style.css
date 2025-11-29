@@ -91,3 +91,82 @@ footer {
     font-size: 0.8em;
     color: #777;
 }
+
+.hamburger-menu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    cursor: pointer;
+    z-index: 1000; /* 確保它在最上層 */
+    background: transparent; /* 讓它看起來像浮在頁面上 */
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: var(--primary-color); /* 使用主題顏色 */
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 2. 側邊導覽列樣式 */
+.sidebar-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px; /* 側邊選單寬度 */
+    height: 100vh;
+    background: var(--primary-color); /* 選單背景色 */
+    color: white;
+    z-index: 999;
+    padding-top: 60px;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+    
+    /* 預設隱藏在螢幕右側 */
+    transform: translateX(100%); 
+    transition: transform 0.4s ease-in-out; 
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-nav li a {
+    display: block;
+    padding: 15px 25px;
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+.sidebar-nav li a:hover {
+    background: var(--accent-color);
+}
+
+/* 3. 點擊後顯示選單的 Class (由 JavaScript 控制) */
+.nav-open .sidebar-nav {
+    transform: translateX(0); /* 滑入螢幕內 */
+}
+
+/* (可選) 點擊後讓漢堡圖案變成 X 符號，提升使用者體驗 */
+.nav-open .hamburger-menu span:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+.nav-open .hamburger-menu span:nth-child(2) {
+    opacity: 0;
+}
+.nav-open .hamburger-menu span:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+/* (可選) 當導覽列開啟時，讓 body 無法捲動 */
+.nav-open body {
+    overflow: hidden; 
+}

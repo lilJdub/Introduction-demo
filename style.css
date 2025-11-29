@@ -170,3 +170,122 @@ footer {
 .nav-open body {
     overflow: hidden; 
 }
+
+/* chatbot section */
+
+/* 聊天 ICON 樣式 (永遠固定在右下角) */
+.chat-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--accent-color); /* 使用你的主題顏色 */
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    font-size: 2em;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000; /* 確保它浮在其他內容之上 */
+}
+
+/* 聊天視窗本體 */
+.chat-window {
+    position: fixed;
+    bottom: 90px; /* 移到 ICON 上方 */
+    right: 20px;
+    width: 350px;
+    height: 450px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+    
+    /* 讓開關動作更平滑 */
+    transition: all 0.3s ease-in-out; 
+}
+
+/* 預設收合狀態 (由 JS 控制切換) */
+.chat-window.chat-closed {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+    pointer-events: none; /* 關閉時不佔據滑鼠點擊空間 */
+}
+
+/* 視窗頭部 */
+.chat-header {
+    background: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h4 {
+    margin: 0;
+}
+
+.close-btn {
+    font-size: 1.5em;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* 訊息區域 */
+.chat-messages {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto; /* 訊息過多時可捲動 */
+    background: #f9f9f9;
+}
+
+/* 訊息樣式 */
+.message {
+    padding: 8px 12px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    max-width: 80%;
+}
+
+.bot-message {
+    background: #e9ecef;
+    align-self: flex-start;
+}
+
+.user-message {
+    background: var(--accent-color);
+    color: white;
+    margin-left: auto; /* 推到右側 */
+}
+
+/* 輸入區域 */
+.chat-input-area {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #eee;
+}
+
+#chat-input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+#chat-send {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+}

@@ -6,6 +6,27 @@
     <title>關於我 | lilJdub</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<div id="chatbot-container" class="chatbot-container">
+    
+    <div id="chat-window" class="chat-window chat-closed">
+        <div class="chat-header">
+            <h4>🤖 lilJdub 小幫手</h4>
+            <span id="chat-close" class="close-btn">&times;</span>
+        </div>
+        
+        <div id="chat-messages" class="chat-messages">
+            <div class="message bot-message">嗨！有什麼關於 lilJdub 的問題想問我嗎？</div>
+        </div>
+        
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="在這裡輸入你的問題..." />
+            <button id="chat-send">送出</button>
+        </div>
+    </div>
+    
+    <div id="chat-icon" class="chat-icon">💬</div>
+
+</div>
 <body>
     <div id="menu-toggle" class="hamburger-menu">
         <span></span>
@@ -18,7 +39,7 @@
             <li><a href="#">關於我 (目前頁面)</a></li>
             <li><a href="portfolio.html">我的作品集</a></li>
             <li><a href="#">技術部落格</a></li>
-            <li><a href="#">聯絡方式</a></li>
+            <li><a href="#">小幫手</a></li>
         </ul>
     </nav>
     <div class="container">

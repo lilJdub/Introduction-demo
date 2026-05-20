@@ -1,0 +1,312 @@
+/* style.css */
+
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #3498db;
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--accent-color);
+    margin-bottom: 20px;
+    background-color: #ddd;
+}
+
+h1 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.role {
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    display: inline-block;
+    background: #eef7fc;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.bio {
+    margin-bottom: 30px;
+    text-align: left;
+    padding: 0 40px;
+}
+
+.skills {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.skill-tag {
+    background: #2c3e50;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+.social-links a {
+    text-decoration: none;
+    color: var(--primary-color);
+    margin: 0 10px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--accent-color);
+}
+
+footer {
+    margin-top: 50px;
+    font-size: 0.8em;
+    color: #777;
+}
+
+.hamburger-menu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    cursor: pointer;
+    z-index: 1000; /* 確保它在最上層 */
+    background: transparent; /* 讓它看起來像浮在頁面上 */
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: var(--primary-color); /* 使用主題顏色 */
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 2. 側邊導覽列樣式 */
+.sidebar-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px; /* 側邊選單寬度 */
+    height: 100vh;
+    background: var(--primary-color); /* 選單背景色 */
+    color: white;
+    z-index: 999;
+    padding-top: 60px;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+    
+    /* 預設隱藏在螢幕右側 */
+    transform: translateX(100%); 
+    transition: transform 0.4s ease-in-out; 
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-nav li a {
+    display: block;
+    padding: 15px 25px;
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+.sidebar-nav li a:hover {
+    background: var(--accent-color);
+}
+
+/* 3. 點擊後顯示選單的 Class (由 JavaScript 控制) */
+.nav-open .sidebar-nav {
+    transform: translateX(0); /* 滑入螢幕內 */
+}
+
+/* (可選) 點擊後讓漢堡圖案變成 X 符號，提升使用者體驗 */
+.nav-open .hamburger-menu span:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+.nav-open .hamburger-menu span:nth-child(2) {
+    opacity: 0;
+}
+.nav-open .hamburger-menu span:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+/* (可選) 當導覽列開啟時，讓 body 無法捲動 */
+.nav-open body {
+    overflow: hidden; 
+}
+
+/* chatbot section */
+
+/* 聊天 ICON 樣式 (永遠固定在右下角) */
+.chat-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--accent-color); /* 使用你的主題顏色 */
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    font-size: 2em;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000; /* 確保它浮在其他內容之上 */
+}
+
+/* 聊天視窗本體 */
+.chat-window {
+    position: fixed;
+    bottom: 90px; /* 移到 ICON 上方 */
+    right: 20px;
+    width: 350px;
+    height: 450px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+    
+    /* 讓開關動作更平滑 */
+    transition: all 0.3s ease-in-out; 
+}
+
+/* 預設收合狀態 (由 JS 控制切換) */
+.chat-window.chat-closed {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+    pointer-events: none; /* 關閉時不佔據滑鼠點擊空間 */
+}
+
+/* 視窗頭部 */
+.chat-header {
+    background: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h4 {
+    margin: 0;
+}
+
+.close-btn {
+    font-size: 1.5em;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* 訊息區域 */
+.chat-messages {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto; /* 訊息過多時可捲動 */
+    background: #f9f9f9;
+}
+
+/* 訊息樣式 */
+.message {
+    padding: 8px 12px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    max-width: 80%;
+}
+
+.bot-message {
+    background: #e9ecef;
+    align-self: flex-start;
+}
+
+.user-message {
+    background: var(--accent-color);
+    color: white;
+    margin-left: auto; /* 推到右側 */
+}
+
+/* 輸入區域 */
+.chat-input-area {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #eee;
+}
+
+#chat-input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+#chat-send {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+.xperience-title{
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 10px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    font-size: 18px;
+}
+.xperience-content{
+    max-width: 800px;
+    margin: 25px auto;
+    padding: 15px;
+    background: gray;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    font-size: 12px;
+}

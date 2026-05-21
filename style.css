@@ -1,31 +1,80 @@
 /* style.css */
 
+/* ==========================================
+   1. 全域變數與初始化
+   ========================================== */
 :root {
     --primary-color: #2c3e50;
     --accent-color: #3498db;
-    --bg-color: #f4f7f6;
-    --text-color: #333;
+    --bg-color: #f7f9fb; /* 微調為較柔和的淺灰，提升現代感 */
+    --text-color: #333333;
+    --card-bg: #ffffff;
+    --border-color: #eef2f5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
+    /* 防止右側選單滑出時出現橫向捲軸 */
+    overflow-x: hidden; 
 }
 
+/* ==========================================
+   2. 共用容器 (Containers)
+   ========================================== */
+/* 首頁的個人簡介卡片 */
 .container {
     max-width: 800px;
-    margin: 60px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin: 40px auto;
+    padding: 40px 20px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
     text-align: center;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* ★ 魔法語法：當 .container 裡面有工作經驗區塊時，自動移除 padding 並靠左對齊 */
+.container:has(.xperience-title) {
+    padding: 0;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+/* 工作經驗的上方標題區塊 */
+.container-horizontal {
+    max-width: 800px;
+    margin: 40px auto 20px auto; 
+    padding: 20px 30px; 
+    background: var(--card-bg);
+    border-radius: 12px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+    
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+    gap: 20px; 
+}
+
+.container-horizontal p {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+}
+
+/* ==========================================
+   3. 首頁個人資料元素 (Profile Elements)
+   ========================================== */
 .profile-img {
     width: 150px;
     height: 150px;
@@ -34,6 +83,14 @@ body {
     border: 4px solid var(--accent-color);
     margin-bottom: 20px;
     background-color: #ddd;
+}
+
+.profile-img-small {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-color);
 }
 
 h1 {
@@ -67,7 +124,7 @@ h1 {
 }
 
 .skill-tag {
-    background: #2c3e50;
+    background: var(--primary-color);
     color: white;
     padding: 5px 15px;
     border-radius: 5px;
@@ -87,11 +144,56 @@ h1 {
 }
 
 footer {
-    margin-top: 50px;
+    text-align: center;
+    margin: 50px 0 20px 0;
     font-size: 0.8em;
     color: #777;
 }
 
+/* ==========================================
+   4. 工作經驗專屬樣式 (Experience Cards)
+   ========================================== */
+.container:has(.xperience-title):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.xperience-title {
+    background-color: #f8fafd;
+    padding: 20px 30px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.xperience-title p {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0; /* 覆蓋全域預設 */
+}
+
+.xperience-content {
+    padding: 25px 30px;
+    background: var(--card-bg);
+}
+
+.xperience-content p {
+    font-size: 15px;
+    color: #555555;
+    margin-bottom: 12px;
+}
+
+.xperience-content p:last-child {
+    margin-bottom: 0;
+}
+
+.xperience-content p::before {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* ==========================================
+   5. 導覽列與漢堡選單 (Sidebar & Hamburger)
+   ========================================== */
 .hamburger-menu {
     position: fixed;
     top: 20px;
@@ -102,85 +204,84 @@ footer {
     flex-direction: column;
     justify-content: space-around;
     cursor: pointer;
-    z-index: 1000; /* 確保它在最上層 */
-    background: transparent; /* 讓它看起來像浮在頁面上 */
+    z-index: 1000;
+    background: transparent;
 }
 
 .hamburger-menu span {
     display: block;
     width: 100%;
     height: 3px;
-    background: var(--primary-color); /* 使用主題顏色 */
+    background: var(--primary-color);
     border-radius: 2px;
     transition: all 0.3s ease-in-out;
 }
 
-/* 2. 側邊導覽列樣式 */
 .sidebar-nav {
     position: fixed;
     top: 0;
     right: 0;
-    width: 250px; /* 側邊選單寬度 */
+    width: 250px;
     height: 100vh;
-    background: var(--primary-color); /* 選單背景色 */
+    background: var(--primary-color);
     color: white;
     z-index: 999;
-    padding-top: 60px;
-    box-shadow: -2px 0 5px rgba(0,0,0,0.2);
-    
-    /* 預設隱藏在螢幕右側 */
+    padding-top: 80px;
+    box-shadow: -2px 0 15px rgba(0,0,0,0.15);
     transform: translateX(100%); 
-    transition: transform 0.4s ease-in-out; 
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
 }
 
 .sidebar-nav ul {
     list-style: none;
-    padding: 0;
 }
 
 .sidebar-nav li a {
     display: block;
-    padding: 15px 25px;
-    color: white;
+    padding: 15px 30px;
+    color: #ecf0f1;
     text-decoration: none;
-    font-size: 1.1em;
+    font-size: 16px;
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
 .sidebar-nav li a:hover {
     background: var(--accent-color);
+    color: white;
 }
 
-/* 3. 點擊後顯示選單的 Class (由 JavaScript 控制) */
+/* 點擊後顯示選單 (由 JavaScript 在 body 加上 .nav-open 觸發) */
 .nav-open .sidebar-nav {
-    transform: translateX(0); /* 滑入螢幕內 */
+    transform: translateX(0);
 }
 
-/* (可選) 點擊後讓漢堡圖案變成 X 符號，提升使用者體驗 */
+/* 漢堡圖案變成 X 符號 */
 .nav-open .hamburger-menu span:nth-child(1) {
-    transform: translateY(11px) rotate(45deg);
+    transform: translateY(9px) rotate(45deg);
+    background: white; /* 在深色背景上變白 */
 }
 .nav-open .hamburger-menu span:nth-child(2) {
     opacity: 0;
 }
 .nav-open .hamburger-menu span:nth-child(3) {
-    transform: translateY(-11px) rotate(-45deg);
+    transform: translateY(-9px) rotate(-45deg);
+    background: white;
 }
 
-/* (可選) 當導覽列開啟時，讓 body 無法捲動 */
 .nav-open body {
     overflow: hidden; 
 }
 
-/* chatbot section */
-
-/* 聊天 ICON 樣式 (永遠固定在右下角) */
+/* ==========================================
+   6. 聊天機器人 (Chatbot)
+   ========================================== */
 .chat-icon {
     position: fixed;
     bottom: 20px;
     right: 20px;
     width: 60px;
     height: 60px;
-    background-color: var(--accent-color); /* 使用你的主題顏色 */
+    background-color: var(--accent-color);
     color: white;
     border-radius: 50%;
     text-align: center;
@@ -188,42 +289,41 @@ footer {
     font-size: 2em;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    z-index: 1000; /* 確保它浮在其他內容之上 */
+    z-index: 1000;
+    transition: transform 0.2s ease;
 }
 
-/* 聊天視窗本體 */
+.chat-icon:hover {
+    transform: scale(1.05);
+}
+
 .chat-window {
     position: fixed;
-    bottom: 90px; /* 移到 ICON 上方 */
+    bottom: 90px;
     right: 20px;
     width: 350px;
     height: 450px;
     background: white;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
     z-index: 999;
-    
-    /* 讓開關動作更平滑 */
-    transition: all 0.3s ease-in-out; 
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    border: 1px solid var(--border-color);
 }
 
-/* 預設收合狀態 (由 JS 控制切換) */
 .chat-window.chat-closed {
     opacity: 0;
     transform: translateY(50px) scale(0.9);
-    pointer-events: none; /* 關閉時不佔據滑鼠點擊空間 */
+    pointer-events: none;
 }
 
-/* 視窗頭部 */
 .chat-header {
     background: var(--primary-color);
     color: white;
-    padding: 10px 15px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -231,82 +331,102 @@ footer {
 
 .chat-header h4 {
     margin: 0;
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
 .close-btn {
-    font-size: 1.5em;
+    font-size: 1.2em;
     cursor: pointer;
     line-height: 1;
+    transition: color 0.2s;
 }
 
-/* 訊息區域 */
+.close-btn:hover {
+    color: #e74c3c;
+}
+
 .chat-messages {
     flex-grow: 1;
-    padding: 10px;
-    overflow-y: auto; /* 訊息過多時可捲動 */
+    padding: 15px;
+    overflow-y: auto;
     background: #f9f9f9;
 }
 
-/* 訊息樣式 */
 .message {
-    padding: 8px 12px;
-    border-radius: 15px;
-    margin-bottom: 10px;
-    max-width: 80%;
+    padding: 10px 15px;
+    border-radius: 18px;
+    margin-bottom: 12px;
+    max-width: 85%;
+    font-size: 0.95em;
+    line-height: 1.4;
 }
 
 .bot-message {
     background: #e9ecef;
+    color: #333;
     align-self: flex-start;
+    border-bottom-left-radius: 4px;
 }
 
 .user-message {
     background: var(--accent-color);
     color: white;
-    margin-left: auto; /* 推到右側 */
+    margin-left: auto;
+    border-bottom-right-radius: 4px;
 }
 
-/* 輸入區域 */
 .chat-input-area {
     display: flex;
-    padding: 10px;
-    border-top: 1px solid #eee;
+    padding: 12px;
+    background: white;
+    border-top: 1px solid var(--border-color);
 }
 
 #chat-input {
     flex-grow: 1;
-    padding: 8px;
+    padding: 10px 15px;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-right: 5px;
+    border-radius: 20px;
+    margin-right: 8px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+#chat-input:focus {
+    border-color: var(--accent-color);
 }
 
 #chat-send {
     background: var(--accent-color);
     color: white;
     border: none;
-    border-radius: 5px;
-    padding: 8px 15px;
+    border-radius: 20px;
+    padding: 8px 18px;
     cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
 }
 
-.xperience-title{
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 10px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    text-align: center;
-    font-size: 18px;
+#chat-send:hover {
+    background: #2980b9;
 }
-.xperience-content{
-    max-width: 800px;
-    margin: 25px auto;
-    padding: 15px;
-    background: gray;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    text-align: center;
-    font-size: 12px;
+
+/* ==========================================
+   7. 響應式設計 (RWD) 手機版微調
+   ========================================== */
+@media (max-width: 768px) {
+    .container, .container-horizontal {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    
+    .bio {
+        padding: 0 15px;
+    }
+    
+    .chat-window {
+        width: calc(100% - 40px);
+        right: 20px;
+    }
 }
